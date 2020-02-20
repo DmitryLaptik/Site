@@ -1,17 +1,11 @@
 const express = require('express');
 const bodyP = require('body-parser');
-const { DataBase } = require('../database.js');
-
 const app = express(),
     DIST_DIR = __dirname,
     //PROJ_DIR = 'D:/Site/Test/',
     WORK_PROJ_DIR = 'D:/Диплом/Site/Test/';
 
 const PROJ_DIR = WORK_PROJ_DIR;
-
-const db = new DataBase();
-
-db.initialization();
 
 const jsonParser = bodyP.json();
 console.log(jsonParser);
@@ -40,7 +34,7 @@ app.get('/page/:id', (req, res) => {
 });
 
 app.post('/',urlencodedP,function (req,res) {
-    if(!req.body) return res.sendStatus(400);
+   if(!req.body) return res.sendStatus(400);
     console.log(req.body);
     let data = {firstName:req.body.firstName, secName:req.body.secondName};
     db.insertValue('users',data.firstName,data.secName, null);
